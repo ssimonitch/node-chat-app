@@ -11,7 +11,9 @@ module.exports = {
         "sourceType": "module"
     },
     "globals": {
-      "io": true
+      "io": true,
+      "moment": true,
+      "Mustache": true
     },
     "rules": {
         "indent": [

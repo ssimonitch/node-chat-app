@@ -1,5 +1,6 @@
 var socket = io();
 
+
 socket.on('connect', function() {
   console.log('Connected to sever');
 });
@@ -9,20 +10,29 @@ socket.on('disconnect', function() {
 });
 
 socket.on('newMessage', function(message) {
-  var li = $('<li></li>');
+  var formattedTime = moment(message.createdAt).format('h:mm a');
+  var template = $('#message-template').html();
 
-  li.text(`${message.from}: ${message.text}`);
-  $('#messages').append(li);
+  var html = Mustache.render(template, {
+    from: message.from,
+    text: message.text,
+    createdAt: formattedTime
+  });
+
+  $('#messages').append(html);
 });
 
 socket.on('newLocationMessage', function(message) {
-  var li = $('<li></li>');
-  var a = $('<a target="_blank">My current location</a>');
+  var formattedTime = moment(message.createdAt).format('h:mm a');
+  var template = $('#location-message-template').html();
 
-  li.text(`${message.from}: `);
-  a.attr('href', message.url);
-  li.append(a);
-  $('#messages').append(li);
+  var html = Mustache.render(template, {
+    from: message.from,
+    url: message.url,
+    createdAt: formattedTime
+  });
+
+  $('#messages').append(html);
 });
 
 $('#message-form').on('submit', function(e) {
