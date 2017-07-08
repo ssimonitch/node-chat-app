@@ -2,14 +2,15 @@ module.exports = {
     "env": {
         "es6": true,
         "node": true,
-        "mocha": true
+        "mocha": true,
+        "browser": true,
+        "jquery": true
     },
     "extends": "eslint:recommended",
     "parserOptions": {
         "sourceType": "module"
     },
     "globals": {
-      "$": true,
       "io": true
     },
     "rules": {

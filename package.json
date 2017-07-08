@@ -4,6 +4,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node server/server.js",
+    "start-watch": "nodemon --exec \"yarn start\"",
     "test": "export NODE_ENV=test || SET \"NODE_ENV=test\" && mocha server/**/*.test.js",
     "test-watch": "nodemon --exec \"yarn test\""
   },
