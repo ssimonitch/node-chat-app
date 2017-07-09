@@ -6,9 +6,15 @@ socket.on('connect', function() {
   // on updated rooms list
   socket.on('updateRoomList', function(rooms) {
 
-    // render select options for all active rooms
     let select = $('#room');
-    console.log(rooms);
+
+    // disable select if no rooms avail
+    if (rooms.length === 0) {
+      select.attr('disabled', true);
+      select.append($('<option>No active rooms</option>'));
+    }
+
+    // render select options for all active rooms
     rooms.forEach(function(room) {
       select.append($('<option></option>').text(room.name + ' (users: ' + room.population + ')').attr('value', room.name));
     });
@@ -28,6 +34,11 @@ $('#new-room-button').on('click', function() {
 
   // promt user for new room name
   var roomName = prompt('Please enter a room name');
+
+  // break out if cancel prompt
+  if (roomName === null) {
+    return;
+  }
 
   // check if room exists
   var existingRooms = $('option').map(function() {
