@@ -10,7 +10,7 @@
 
 <body class="centered-form">
   <div class="centered-form__form">
-    <form action="/chat.html">
+    <form action="/chat.html" id="join-chat-form">
       <div class="form-field">
         <h3>Join Chat</h3>
       </div>
@@ -19,16 +19,24 @@
         <input type="text" name="name" autofocus />
       </div>
       <div class="form-field">
-        <label>Room Name</label>
-        <input type="text" name="room" />
+        <label>Select Room</label>
+        <select id="room" name="room"></select>
+      </div>
+      <div class="form-field">
+        <input id="new-room-input" type="hidden" />
       </div>
       <div class="form-field">
         <button>Join</button>
+      </div>
+      <div class="form-field">
+        <button type="button" id="new-room-button">Create New</button>
       </div>
     </form>
   </div>
 
   <script src="/js/libs/jquery-3.2.1.min.js"></script>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="/js/index.js"></script>
 </body>
 
 </html>
